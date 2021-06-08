@@ -10,4 +10,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('formJogos' ,'FormularioJogosController');
-Route::resource('logoTimes' ,'LogoController');
+Route::resource('logos' ,'LogoController');
