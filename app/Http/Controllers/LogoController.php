@@ -13,8 +13,8 @@ class LogoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('logo.index');
+    {   $logos = Logo::all();
+        return view('logo.index',compact('logos'));
     }
 
     /**
@@ -47,12 +47,14 @@ class LogoController extends Controller
             $imagePath = $request->file('logo');
             $imageName = $imagePath->getClientOriginalName();
 
-            $path = $request->file('logo')->move('logo', $imageName, 'public');
+            $path = $request->file('logo')->storeAs('logo', $imageName,'public');
           }
 
           $image->nome = $imageName;
-          $image->logo = '/public/'.$path;
+          $image->logo = '/storage/'.$path;
           $image->save();
+
+          return view('logo.index');
     }
 
     /**
