@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\formularioJogo;
 use Illuminate\Http\Request;
 
-class LogoControlller extends Controller
+class FormularioJogosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class LogoControlller extends Controller
      */
     public function index()
     {
-        //
+        $forms = FormularioJogo::all();
+        return view('formulario.index',compact('forms'));
     }
 
     /**
@@ -23,7 +25,8 @@ class LogoControlller extends Controller
      */
     public function create()
     {
-        //
+        $jogos = new formularioJogo();
+        return view('formulario.create',compact('jogos'));
     }
 
     /**
@@ -34,7 +37,19 @@ class LogoControlller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'data' => 'required',
+            'hora' => 'required',
+            'local'=>'required',
+            'informacao' => 'required',
+        ]);
+        $form = new formularioJogo();
+        $form->data = $request->data;
+        $form->hora = $request->hora;
+        $form->local = $request->local;
+        $form->informacao = $request->informacao;
+        $form->save();
+        return view('formulario');
     }
 
     /**

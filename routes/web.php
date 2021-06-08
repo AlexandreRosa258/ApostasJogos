@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\FormularioJogos;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,4 +9,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('formJogos' ,'FormularioJogos');
+Route::resource('formJogos' ,'FormularioJogosController');
+Route::resource('logoTimes' ,'LogoController');

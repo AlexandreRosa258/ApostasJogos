@@ -15,7 +15,7 @@ class CreateFormularioJogosTable extends Migration
     {
         Schema::create('formulario_jogos', function (Blueprint $table) {
             $table->id();
-            $table->string('time');
+            //$table->string('time');
             $table->string('informacao');
             $table->string('data');
             $table->string('hora');
