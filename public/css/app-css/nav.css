@@ -1,0 +1,14 @@
+.brand-logo{
+    font-family: cursive;
+    margin-left: 10px;
+    }
+    .modal{
+        width: 100%;
+        height: 340px;
+        text-align: center;
+    }
+
+    .modal-close{
+        margin: auto;
+        margin-inline: 20px;
+    }

@@ -1,0 +1,18 @@
+.register{
+    text-align: center;
+  }
+
+  img{
+    margin-left: 20px;
+    margin-top: 15px;
+    width: 90%;
+    height:90%;
+  }
+
+  .card{
+    border-radius: 20px;
+    margin-top: 10%;
+    height:410px;
+    width: 100%;
+    box-shadow: 5px 5px 5px black;
+  }
