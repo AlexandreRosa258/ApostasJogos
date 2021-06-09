@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Logo;
+use App\Partida;
+
 use Illuminate\Http\Request;
 
 class PartidaController extends Controller
@@ -13,7 +17,8 @@ class PartidaController extends Controller
      */
     public function index()
     {
-        //
+        $partidas = Partida::all();
+        return view('partida.index',compact('partidas'));
     }
 
     /**
@@ -23,7 +28,9 @@ class PartidaController extends Controller
      */
     public function create()
     {
-        //
+        $jogos = new Partida();
+        $logos = Logo::all();
+        return view('partida.create',compact('jogos','logos'));
     }
 
     /**
@@ -32,9 +39,27 @@ class PartidaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+
+        $request->validate([
+            'time1'=> 'required',
+            'time2'=> 'required',
+            'data' => 'required',
+            'hora' => 'required',
+            'local'=>'required',
+            'informacao' => 'required',
+        ]);
+        $partida = new Partida();
+        $partida->time1 = $request->time1;
+        $partida->time2 = $request->time2;
+        $partida->data = $request->data;
+        $partida->hora = $request->hora;
+        $partida->local = $request->local;
+        $partida->informacao = $request->informacao;
+
+        $partida->save();
+
+        return view('partida.index');
     }
 
     /**

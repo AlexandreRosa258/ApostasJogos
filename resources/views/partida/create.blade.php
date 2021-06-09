@@ -88,33 +88,26 @@
         </div>
         <div class="container">
 
-            <form action="{{ route('formJogos.store') }}" method="POST">
-
+            <form action="{{ route('partida.store') }}" method="POST">
+                @csrf
                 <div class="container">
-
-
                     <div class="row">
                         <div class="col s12">
                             <div class="col s6">
-                                <select id="myselection" class="browser-default">
+                                <select id="myselection" name="time1" class="browser-default">
+                                    <option disabled selected>Selecione Time</option>
                                     @foreach ($logos as $items)
-                                        <option value="{{ $items->id }}" selected> {{ $items->nome }}</option>
-
-                                        {{-- <div id="{{ $items }}" class="myDiv">
-                                                    <img src="{{ asset('image/teste.png') }}" alt="HR" />
-                                                </div> --}}
+                                        <option value="{{ $items->id }}"  > {{ $items->nome }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col s6">
-                                <select id="myselection" class="browser-default">
+                                <select id="myselection" name="time2" class="browser-default">
+                                    <option disabled selected>Selecione Time</option>
                                     @foreach ($logos as $items)
-                                        <option value="{{ $items->id }}" selected> {{ $items->nome }}</option>
-
-                                        <div id="{{ $items }}" class="myDiv">
-                                            <img src="{{ asset('image/teste.png') }}" alt="HR" />
-                                        </div>
+                                    <option value="{{ $items->id }}" > {{ $items->nome }}</option>
                                     @endforeach
+
                                 </select>
                             </div>
                         </div>
@@ -123,14 +116,12 @@
 
 
                 </div>
-
-                @csrf
                 <div class="row">
                     <div class="col s6">
                         <div class="card-panel grey lighten-4">
                             <span>
                                 <label for="hora">Hora</label>
-                                <input name="hora" type="time" min="9:00" max="20:00">
+                                <input name="hora" class="timepicker" min="9:00" max="20:00">
                                 <label for="Data">Data</label>
                                 <input type="text" name="data" class="datepicker">
                             </span>
@@ -164,8 +155,5 @@
         });
 
     </script>
-
     </html>
-
-
 @endsection

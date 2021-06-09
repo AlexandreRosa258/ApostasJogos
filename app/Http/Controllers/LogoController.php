@@ -41,16 +41,16 @@ class LogoController extends Controller
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
           ]);
 
-          $image = new Logo();
+          $image = Logo::create(request()->all());
 
           if ($request->file('logo')) {
             $imagePath = $request->file('logo');
-            $imageName = $imagePath->getClientOriginalName();
-
+            // $imageName = $imagePath->getClientOriginalExtension();
+            $imageName = request()->nome.'.'.$imagePath->getClientOriginalExtension();
             $path = $request->file('logo')->storeAs('logo', $imageName,'public');
           }
 
-          $image->nome = $imageName;
+          $image->nome = $request->nome;
           $image->logo = '/storage/'.$path;
           $image->save();
 

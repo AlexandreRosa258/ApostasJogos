@@ -15,6 +15,12 @@ class CreatePartidasTable extends Migration
     {
         Schema::create('partidas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('time1');
+            $table->unsignedInteger('time2');
+            $table->string('informacao');
+            $table->string('data');
+            $table->string('hora');
+            $table->string('local');
             $table->timestamps();
         });
     }
