@@ -29,6 +29,8 @@
          <form action="{{route('logos.store')}}" method="post" enctype="multipart/form-data">
            @csrf
 
+
+
            <div class="row">
           <div class=" input-field col s6">
             <i class="material-icons prefix left">account_circle</i>

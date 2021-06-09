@@ -36,4 +36,5 @@
 <script src="{{asset('materialize-css/js/materialize.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script type="text/javascript" src="{{asset('js/datapiker.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/changeTime.js')}}"></script>
 </html>

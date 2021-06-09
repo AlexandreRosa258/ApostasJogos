@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\formularioJogo;
-use App\Logo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
-class FormularioJogosController extends Controller
+class PartidaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +13,7 @@ class FormularioJogosController extends Controller
      */
     public function index()
     {
-        $forms = FormularioJogo::all();
-        return view('formulario.index',compact('forms'));
+        //
     }
 
     /**
@@ -27,9 +23,7 @@ class FormularioJogosController extends Controller
      */
     public function create()
     {
-        $jogos = new formularioJogo();
-        $logos = Logo::all();
-        return view('formulario.create',compact('jogos','logos'));
+        //
     }
 
     /**
@@ -40,19 +34,7 @@ class FormularioJogosController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'data' => 'required',
-            'hora' => 'required',
-            'local'=>'required',
-            'informacao' => 'required',
-        ]);
-        $form = new formularioJogo();
-        $form->data = $request->data;
-        $form->hora = $request->hora;
-        $form->local = $request->local;
-        $form->informacao = $request->informacao;
-        $form->save();
-        return view('formulario.index');
+        //
     }
 
     /**

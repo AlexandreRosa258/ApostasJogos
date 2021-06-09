@@ -21,17 +21,19 @@
     </head>
 
     <style>
-        .image{
+        .image {
             width: 300px;
             height: 300px;
-            border:#000 solid 1px;
+            border: #000 solid 1px;
             display: block;
         }
-        img{
+
+        img {
             width: 100%;
             height: 100%;
         }
-        #botafogo{
+
+        #botafogo {
             display: block;
             background-repeat: no-repeat;
             margin: auto;
@@ -41,66 +43,127 @@
             height: 100%;
 
         }
+
+
+        .myDiv {
+            display: none;
+        }
+
+        .myDiv img {
+            margin: 0 auto;
+        }
+
+        .myDiv span {
+            text-align: center;
+            background: #ffdede;
+            padding: 6px 10px;
+            display: block;
+            width: 100px;
+            border: 1px solid #d47c7c;
+            margin: 8px auto;
+        }
+
     </style>
 
 
     <body>
         <div class="row">
-            {{-- <div class="col s6">
-                <div class="image">
-                    <img src="{{ asset('image/brasao.jpg') }}" alt="">
-                </div>
-                <select class="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
-                </select>
-            </div> --}}
-            {{-- <div class="col s6">
-                <div class="image">
-                    <img id="botafogo" src="{{ asset('image/brasao2.png') }}" alt="">
-                </div>
-                <select class="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
-                </select>
+
+
+            {{-- <div id="showTwo" class="myDiv">
+                <img src="{{ asset('image/teste.png') }}" alt="HR" /><span>HR</span>
             </div>
-        </div>--}}
+            <div id="showThree" class="myDiv">
+                <img src="{{ asset('image/teste.png') }}" alt="Developer" /><span>Developer</span>
+            </div>
+            <div class="container">
+                <select id="myselection" class="browser-default">
+                    <option>Select Option</option>
+                    <option value="One">Manager</option>
+                    <option value="Two">HR</option>
+                    <option value="Three">Developer</option>
+                </select> --}}
+
+
+        </div>
         <div class="container">
 
             <form action="{{ route('formJogos.store') }}" method="POST">
+
+                <div class="container">
+
+
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="col s6">
+                                <select id="myselection" class="browser-default">
+                                    @foreach ($logos as $items)
+                                        <option value="{{ $items->id }}" selected> {{ $items->nome }}</option>
+
+                                        {{-- <div id="{{ $items }}" class="myDiv">
+                                                    <img src="{{ asset('image/teste.png') }}" alt="HR" />
+                                                </div> --}}
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col s6">
+                                <select id="myselection" class="browser-default">
+                                    @foreach ($logos as $items)
+                                        <option value="{{ $items->id }}" selected> {{ $items->nome }}</option>
+
+                                        <div id="{{ $items }}" class="myDiv">
+                                            <img src="{{ asset('image/teste.png') }}" alt="HR" />
+                                        </div>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
                 @csrf
                 <div class="row">
                     <div class="col s6">
                         <div class="card-panel grey lighten-4">
-                         <span>
-                             <label for="hora">Hora</label>
-                             <input name="hora" type="time" min="9:00" max="20:00" >
-                             <label for="Data">Data</label>
-                        <input type="text" name="data" class="datepicker">
-                         </span>
+                            <span>
+                                <label for="hora">Hora</label>
+                                <input name="hora" type="time" min="9:00" max="20:00">
+                                <label for="Data">Data</label>
+                                <input type="text" name="data" class="datepicker">
+                            </span>
                         </div>
 
                     </div>
 
                     <div class="col s6">
                         <div class="card-panel grey lighten-4">
-                        <label for="Local">Local</label>
-                        <input type="text" name="local">
-                        <label for="Informações">Informações</label>
-                        <textarea name="informacao" class="materialize-textarea" data-length="120"></textarea>
+                            <label for="Local">Local</label>
+                            <input type="text" name="local">
+                            <label for="Informações">Informações</label>
+                            <textarea name="informacao" class="materialize-textarea" data-length="120"></textarea>
                         </div>
                     </div>
 
                 </div>
                 <button type="submit" class="btn blue darken-4"><i class="material-icons left">add</i>Savar</button>
+
             </form>
         </div>
 
     </body>
+    <script>
+        $(document).ready(function() {
+            $('#myselection').on('change', function() {
+                var demovalue = $(this).val();
+                $("div.myDiv").hide();
+                $("#show" + demovalue).show();
+            });
+        });
+
+    </script>
 
     </html>
 
