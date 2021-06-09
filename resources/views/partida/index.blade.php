@@ -11,7 +11,8 @@
     <style>
         h1{
            text-align: center;
-           background:#ddd;
+           border:2px solid #ddd;
+
         }
         h3{
             text-align: center;
@@ -32,6 +33,9 @@
     </style>
 </head>
 <body>
+    @foreach ($partidas2 as $partida2 )
+
+    @endforeach
     @foreach ( $partidas as $partida )
         <h1 class="center">{{ $partida->informacao }}</h1>
         <div class="container">
@@ -57,7 +61,15 @@
         <h3>{{ $partida->data}} - {{ $partida->hora }}</h3>
         <h4>{{ $partida->local}}</h4>
     @endforeach
-
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <a class="waves-effect waves-light btn" href="{{route('partida.create')}}">
+                    <i class="material-icons left">add</i>
+                Salvar</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 

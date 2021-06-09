@@ -54,7 +54,7 @@ class LogoController extends Controller
           $image->logo = '/storage/'.$path;
           $image->save();
 
-          return view('logo.index');
+          return redirect('/logos');
     }
 
     /**

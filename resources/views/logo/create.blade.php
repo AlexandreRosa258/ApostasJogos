@@ -52,7 +52,8 @@
 
 
          <button type="submit" class="btn blue darken-4"><i class="material-icons left">add</i>Savar</button>
-
+         <a class="waves-effect waves-light btn" href="{{route('logos.index')}}">
+            <i class="material-icons left">keyboard_return</i>Voltar</a>
          </form>
        </div>
      </div>

@@ -25,7 +25,7 @@
     <div id="app">
 
         <main class="py-4">
-            @include('nav')
+            {{-- @include('nav') --}}
             @yield('content')
         </main>
     </div>

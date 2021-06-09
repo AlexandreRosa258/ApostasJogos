@@ -7,6 +7,7 @@ use App\Logo;
 use App\Partida;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PartidaController extends Controller
 {
@@ -18,7 +19,9 @@ class PartidaController extends Controller
     public function index()
     {
         $partidas = Partida::all();
-        return view('partida.index',compact('partidas'));
+        $partidas2 = DB::table('partidas')->join('logos','logos.id','=','partidas.time1')
+        ->select('partidas.*','partidas.time2')->get()->toArray();
+        return view('partida.index',compact('partidas','partidas2'));
     }
 
     /**
@@ -59,7 +62,7 @@ class PartidaController extends Controller
 
         $partida->save();
 
-        return view('partida.index');
+        return redirect('/partida');
     }
 
     /**
