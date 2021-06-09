@@ -17,6 +17,7 @@ class CreatePartidasTable extends Migration
             $table->id();
             $table->unsignedInteger('time1');
             $table->unsignedInteger('time2');
+            $table->string('fundo');
             $table->string('informacao');
             $table->string('data');
             $table->string('hora');

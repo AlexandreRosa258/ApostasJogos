@@ -17,78 +17,13 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-        <link rel="stylesheet" href="/css/test/create.css">
+        <link rel="stylesheet" href="/css/partida/create.css">
     </head>
-
-    <style>
-        .image {
-            width: 300px;
-            height: 300px;
-            border: #000 solid 1px;
-            display: block;
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-        }
-
-        #botafogo {
-            display: block;
-            background-repeat: no-repeat;
-            margin: auto;
-            margin-top: 0%;
-            margin-bottom: 0%;
-            width: 100%;
-            height: 100%;
-
-        }
-
-
-        .myDiv {
-            display: none;
-        }
-
-        .myDiv img {
-            margin: 0 auto;
-        }
-
-        .myDiv span {
-            text-align: center;
-            background: #ffdede;
-            padding: 6px 10px;
-            display: block;
-            width: 100px;
-            border: 1px solid #d47c7c;
-            margin: 8px auto;
-        }
-
-    </style>
-
-
     <body>
-        <div class="row">
-
-
-            {{-- <div id="showTwo" class="myDiv">
-                <img src="{{ asset('image/teste.png') }}" alt="HR" /><span>HR</span>
-            </div>
-            <div id="showThree" class="myDiv">
-                <img src="{{ asset('image/teste.png') }}" alt="Developer" /><span>Developer</span>
-            </div>
-            <div class="container">
-                <select id="myselection" class="browser-default">
-                    <option>Select Option</option>
-                    <option value="One">Manager</option>
-                    <option value="Two">HR</option>
-                    <option value="Three">Developer</option>
-                </select> --}}
-
-
         </div>
         <div class="container">
 
-            <form action="{{ route('partida.store') }}" method="POST">
+            <form action="{{ route('partida.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="container">
                     <div class="row">
@@ -97,7 +32,8 @@
                                 <select id="myselection" name="time1" class="browser-default">
                                     <option disabled selected>Selecione Time</option>
                                     @foreach ($logos as $items)
-                                        <option value="{{ $items->id }}"  > {{ $items->nome }}</option>
+                                        <option value="{{ $items->id }}" onchange="previewImagem()" > {{ $items->nome }}</option>
+                                        <img style="width: 150px; height: 150px;" src="{{$items->logo}}">
                                     @endforeach
                                 </select>
                             </div>
@@ -105,7 +41,7 @@
                                 <select id="myselection" name="time2" class="browser-default">
                                     <option disabled selected>Selecione Time</option>
                                     @foreach ($logos as $items)
-                                    <option value="{{ $items->id }}" > {{ $items->nome }}</option>
+                                    <option value="{{ $items->id }}" data-icon="{{$items->logo}}" > {{ $items->nome }}</option>
                                     @endforeach
 
                                 </select>
@@ -137,24 +73,46 @@
                             <textarea name="informacao" class="materialize-textarea" data-length="120"></textarea>
                         </div>
                     </div>
+                    <div class="col s12">
+                        <div class="file-field">
+                            <div class="btn">
+                              <span><i class="material-icons">camera_alt</i></span>
+                              <input type="file" name="fundo" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                              <input class="file-path validate" name="fundo" type="text" placeholder="Imagem de Fundo">
+                            </div>
+                          </div>
+                      </div>
+                    </div>
 
                 </div>
-                <button type="submit" class="btn blue darken-4"><i class="material-icons left">add</i>Savar</button>
-                <a class="waves-effect waves-light btn" href="{{route('partida.index')}}">
+                <div class="container center">
+                    <button type="submit" class="btn red darken-4"><i class="material-icons left">add</i>Savar</button>
+                <a class="waves-effect waves-light btn red darken-4" href="{{route('partida.index')}}">
                     <i class="material-icons left">keyboard_return</i>Voltar</a>
+                </div>
             </form>
         </div>
 
     </body>
-    <script>
-        $(document).ready(function() {
-            $('#myselection').on('change', function() {
-                var demovalue = $(this).val();
-                $("div.myDiv").hide();
-                $("#show" + demovalue).show();
-            });
-        });
-
-    </script>
     </html>
 @endsection
+{{-- <script>
+    function previewImagem(){
+        var imagem = document.querySelector('input[name=imagem]').files[0];
+        var preview = document.querySelector('img');
+
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if(imagem){
+            reader.readAsDataURL(imagem);
+        }else{
+            preview.src = "";
+        }
+    }
+</script> --}}

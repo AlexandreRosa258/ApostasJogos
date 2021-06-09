@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Logo;
 use App\Partida;
-
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,9 +19,9 @@ class PartidaController extends Controller
     public function index()
     {
         $partidas = Partida::all();
-        $partidas2 = DB::table('partidas')->join('logos','logos.id','=','partidas.time1')
-        ->select('partidas.*','partidas.time2')->get()->toArray();
-        return view('partida.index',compact('partidas','partidas2'));
+        // $time1 = DB::table('time1','logo.id' ,'=', 'partidas.time1')->get();
+        // $time2 = DB::table('time2','logo.id' ,'=', 'partidas.time1')->get();
+        return view('partida.index',compact('partidas'));
     }
 
     /**
@@ -50,20 +50,45 @@ class PartidaController extends Controller
             'data' => 'required',
             'hora' => 'required',
             'local'=>'required',
+            'fundo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'informacao' => 'required',
         ]);
-        $partida = new Partida();
+        $partida = Partida::create(request()->all());
+
+        if ($request->file('fundo')) {
+            $imagePath = $request->file('fundo');
+            $imageName = $imagePath->getClientOriginalName();
+            $path = $request->file('fundo')->storeAs('FundoImagem', $imageName,'public');
+          }
+
+
         $partida->time1 = $request->time1;
         $partida->time2 = $request->time2;
         $partida->data = $request->data;
         $partida->hora = $request->hora;
         $partida->local = $request->local;
         $partida->informacao = $request->informacao;
+        $partida->fundo = '/storage/'.$path;
 
         $partida->save();
 
         return redirect('/partida');
     }
+
+     // Generate PDF
+     public function createPDF() {
+        // retreive all records from db
+        $data = Partida::all();
+
+        // share data to view
+        view()->share('partida',$data);
+
+        $pdf = PDF::loadView('partida.banner', $data);
+
+        // download PDF file with download method
+        return $pdf->download('banner.pdf');
+      }
+
 
     /**
      * Display the specified resource.

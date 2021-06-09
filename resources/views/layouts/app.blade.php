@@ -32,9 +32,11 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script type="text/javascript" src="{asset('materialize/js/materialize.js')}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="{{asset('materialize-css/js/materialize.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script type="text/javascript" src="{{asset('js/datapiker.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/changeTime.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/dropLogo.js')}}"></script>
 </html>

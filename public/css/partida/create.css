@@ -1,0 +1,30 @@
+.image {
+    width: 300px;
+    height: 300px;
+    border: #000 solid 1px;
+    display: block;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.myDiv {
+    display: none;
+}
+
+.myDiv img {
+    margin: 0 auto;
+}
+
+.myDiv span {
+    text-align: center;
+    background: #ffdede;
+    padding: 6px 10px;
+    display: block;
+    width: 100px;
+    border: 1px solid #d47c7c;
+    margin: 8px auto;
+}
